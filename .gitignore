@@ -1,0 +1,4 @@
+/target/
+spending.db
+*.db
+.DS_Store
