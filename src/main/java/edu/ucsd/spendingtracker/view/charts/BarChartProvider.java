@@ -17,10 +17,19 @@ public class BarChartProvider implements IChartProvider {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         data.forEach((cat, sum) -> {
-            series.getData().add(
-                new XYChart.Data<>(cat.name(), sum)
-            );
+
+            series.getData().add(new XYChart.Data<>(cat.name(), sum));
         });
+
+        chart.getData().add(series);
+
+        for (XYChart.Data<String, Number> entry : series.getData()) {
+        String color = Category.valueOf(entry.getXValue()).color;
+        Node bar = entry.getNode();
+        if (bar != null) {
+        bar.setStyle("-fx-bar-fill: " + color + ";");
+            }
+        };
 
         chart.getData().add(series);
         chart.setLegendVisible(false);
